@@ -1,6 +1,4 @@
 "use client";
-import { Ethereum } from "@thirdweb-dev/chains";
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { useState } from "react";
 import {
   BellIcon,
@@ -9,28 +7,8 @@ import {
 } from "./TopBar/components/Icons";
 
 const Header = () => {
-  const [address, setAddress] = useState<string>("0xfC...E63d1");
-  const [isConnecting, setIsConnecting] = useState(false);
-
-  const connectWallet = async () => {
-    try {
-      setIsConnecting(true);
-      const sdk = new ThirdwebSDK(Ethereum, {
-        clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID,
-      });
-
-      const addr = "...";
-      setAddress(addr);
-    } catch (error) {
-      console.error("Error connecting wallet:", error);
-    } finally {
-      setIsConnecting(false);
-    }
-  };
-
-  const formatAddress = (addr: string) => {
-    return `${addr.substring(0, 6)}...${addr.substring(addr.length - 4)}`;
-  };
+  const [address,] = useState<string>("0xfC...E63d1");
+  const [isConnecting,] = useState(false);
 
   return (
     <header>
@@ -53,7 +31,6 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Wallet Connection */}
           <div className="flex flex-shrink-0 items-center gap-2">
             <div className="text-custom-gray">
               <BellIcon />

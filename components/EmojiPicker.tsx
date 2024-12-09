@@ -1,20 +1,20 @@
-import data from '@emoji-mart/data';
-import Picker from '@emoji-mart/react';
-import { useState } from 'react';
-import { PlusIcon } from './TopBar/components/Icons';
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
+import { useState } from "react";
+import { PlusIcon } from "./TopBar/components/Icons";
 
-interface EmojiPickerProps {
-  show: boolean;
-  onSelect: (emoji: string) => void;
-  onEmojiDrop?: (emoji: string, x: number, y: number) => void;
-}
-
-const EmojiPicker = ({ show, onSelect, onEmojiDrop }: EmojiPickerProps) => {
+const EmojiPicker = () => {
   const [isPickerVisible, setIsPickerVisible] = useState(false);
-  const [commonEmojis, setCommonEmojis] = useState(['🚀', '🐻', '🐂', '💎', '🔥']);
+  const [commonEmojis, setCommonEmojis] = useState([
+    "🚀",
+    "🐻",
+    "🐂",
+    "💎",
+    "🔥",
+  ]);
 
   const handleDragStart = (e: React.DragEvent, emoji: string) => {
-    e.dataTransfer.setData('text/plain', emoji);
+    e.dataTransfer.setData("text/plain", emoji);
   };
 
   return (
@@ -26,12 +26,12 @@ const EmojiPicker = ({ show, onSelect, onEmojiDrop }: EmojiPickerProps) => {
             draggable
             onDragStart={(e) => handleDragStart(e, emoji)}
             className="w-10 h-10 rounded-full hover:bg-custom-darkest flex items-center justify-center text-xl cursor-grab active:cursor-grabbing"
-            onClick={() => onSelect(emoji)}
+            onClick={() => {}}
           >
             {emoji}
           </button>
         ))}
-        
+
         <button
           className="w-10 h-10 rounded-full hover:bg-custom-darkest flex items-center justify-center text-xl bg-custom-darker text-custom-light"
           onClick={() => setIsPickerVisible(!isPickerVisible)}
@@ -45,7 +45,6 @@ const EmojiPicker = ({ show, onSelect, onEmojiDrop }: EmojiPickerProps) => {
           <Picker
             data={data}
             onEmojiSelect={(emoji: any) => {
-              onSelect(emoji.native);
               setCommonEmojis((prev) => [...prev, emoji.native]);
               setIsPickerVisible(false);
             }}
@@ -59,4 +58,4 @@ const EmojiPicker = ({ show, onSelect, onEmojiDrop }: EmojiPickerProps) => {
   );
 };
 
-export default EmojiPicker; 
+export default EmojiPicker;

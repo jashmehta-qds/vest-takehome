@@ -1,7 +1,7 @@
 "use client";
 import confetti from "canvas-confetti";
 import { Form, Formik } from "formik";
-import { memo, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import * as Yup from "yup";
 import EmojiPicker from "./EmojiPicker";
 import EthChart from "./EthChart";
@@ -52,7 +52,6 @@ const TradingSchema = Yup.object().shape({
   ),
 });
 
-const MemoizedTabSelector2 = memo(TabSelector);
 
 const TradingView = () => {
   const [position, setPosition] = useState<"LONG" | "SHORT">("LONG");
@@ -61,9 +60,9 @@ const TradingView = () => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const handleSubmit = (values: any, { setSubmitting }: any) => {
+    console.log(values)
     const audio = new Audio("/ping.wav");
     audio.play();
-
     if (buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
       const x = (rect.left + rect.width / 2) / window.innerWidth;
@@ -215,7 +214,7 @@ const TradingView = () => {
               </Formik>
             </div>
           </div>
-          <EmojiPicker show={false} onSelect={() => {}} />
+          <EmojiPicker />
         </>
       ) : (
         <div>Funding View Component Here</div>

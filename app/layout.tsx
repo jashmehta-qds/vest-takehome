@@ -1,17 +1,15 @@
 import { WebSocketProvider } from '@/contexts/WebSocketContext';
 import type { Metadata } from "next";
-import { Inter } from 'next/font/google';
 import localFont from "next/font/local";
 import Header from '../components/Header';
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-})
-
-export const ibmPlexMono = localFont({
+// const inter = Inter({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-inter',
+// })
+const ibmPlexMono = localFont({
   src: [
     {
       path: '../public/fonts/IBMPlexMono-Regular.ttf',
