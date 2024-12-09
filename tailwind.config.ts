@@ -11,6 +11,12 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'custom-light': 'rgba(242, 241, 240, 1)',
+        'custom-gray': 'rgba(174, 173, 173, 1)',
+      },
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        mono: ['var(--font-ibm-plex-mono)'],
       },
     },
   },

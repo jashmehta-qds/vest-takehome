@@ -1,17 +1,41 @@
+import { WebSocketProvider } from '@/contexts/WebSocketContext';
 import type { Metadata } from "next";
+import { Inter } from 'next/font/google';
 import localFont from "next/font/local";
+import Header from '../components/Header';
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
+export const ibmPlexMono = localFont({
+  src: [
+    {
+      path: '../public/fonts/IBMPlexMono-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/IBMPlexMono-Medium.ttf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/IBMPlexMono-SemiBold.ttf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/IBMPlexMono-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-ibm-plex-mono',
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,15 +44,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${ibmPlexMono.variable} px-[88px] bg-custom-darkest`}>
+        <div className="min-h-screen bg-custom-darkest ">
+          <Header />
+          <WebSocketProvider>
+            {children}
+          </WebSocketProvider>
+        </div>
       </body>
     </html>
   );
